@@ -2,3 +2,9 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+
+  Almefy\Client:
+    arguments:
+      - '%env(ALMEFY_KEY)%'
+      - '%env(ALMEFY_SECRET)%'
+      - '%env(ALMEFY_API)%'
