@@ -8,3 +8,6 @@ services:
       - '%env(ALMEFY_KEY)%'
       - '%env(ALMEFY_SECRET)%'
       - '%env(ALMEFY_API)%'
+
+  Almefy\AuthenticationBundle\Service\AlmefySessionManager:
+    public: true

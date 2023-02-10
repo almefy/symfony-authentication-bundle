@@ -1,0 +1,17 @@
+<!-- START ALMEFY INTEGRATION -->
+
+<!--
+    Place this HTML code wherever the Almefy login code should appear.
+
+    The data-almefy-api attribute is optional. If you do not set it, Almefy will connect to the live api.
+-->
+<div style="max-width: 140px;" data-almefy-auth
+     data-almefy-api="{{ almefyApi }}"
+     data-almefy-key="{{ almefyKey }}"
+        {#                             data-almefy-auth-url="http://playground.almefy.local/authenticate">#}
+     data-almefy-auth-url="{{ path('app_almefy_authenticate') }}">
+</div>
+<script src="https://cdn.almefy.com/js/almefy-0.9.8.js"
+        crossorigin="anonymous">
+</script>
+<!-- END ALMEFY INTEGRATION -->
