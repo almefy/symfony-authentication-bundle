@@ -1,0 +1,3 @@
+almefy_authentication_authenticate:
+    path: '/authenticate'
+    controller: Almefy\AuthenticationBundle\Controller\SecurityController::authenticateAlmefyUser
