@@ -11,6 +11,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/authenticate', name: 'almefy_authentication_authenticate')]
     public function authenticateAlmefyUser(): Response
     {
-        return $this->json([]);
+        return $this->json($this->getUser());
     }
 }

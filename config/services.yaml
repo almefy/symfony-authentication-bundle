@@ -11,3 +11,15 @@ services:
 
   Almefy\AuthenticationBundle\Service\AlmefySessionManager:
     public: true
+
+  Almefy\AuthenticationBundle\Security\AlmefyUserIdentityProvider:
+    public: true
+
+  Almefy\AuthenticationBundle\Security\AlmefyAuthenticator:
+    public: true
+    arguments:
+      $apiSecret: '%env(ALMEFY_SECRET)%'
+
+  Almefy\AuthenticationBundle\Controller\:
+    resource: '../src/Controller'
+    tags: ['controller.service_arguments']
