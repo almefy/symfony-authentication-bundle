@@ -3,10 +3,10 @@
 namespace Almefy\AuthenticationBundle\Security;
 
 use Almefy\AuthenticationBundle\Entity\AlmefyUserIdentity;
+use Almefy\AuthenticationBundle\Service\AlmefySessionManager;
 use Almefy\AuthenticationChallenge;
 use Almefy\Client;
 use Almefy\Session;
-use App\Service\AlmefySessionManager;
 use DateInterval;
 use DateTimeImmutable;
 use Exception;
