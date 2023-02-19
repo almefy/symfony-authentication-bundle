@@ -22,6 +22,7 @@ use Lcobucci\JWT\Validation\Constraint\SignedWith;
 use Lcobucci\JWT\Validation\Constraint\StrictValidAt;
 use Lcobucci\JWT\Validation\RequiredConstraintsViolated;
 use Lcobucci\JWT\Validation\Validator;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -39,7 +40,8 @@ class AlmefyAuthenticator extends AbstractAuthenticator
     public function __construct(
         private Client $client,
         private AlmefySessionManager $almefySessionManager,
-        private string $apiSecret
+        private string $apiSecret,
+        private string $successRedirectUrl = '/'
     ) {
     }
 
@@ -105,7 +107,7 @@ class AlmefyAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return null;
+        return new RedirectResponse($this->successRedirectUrl);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
