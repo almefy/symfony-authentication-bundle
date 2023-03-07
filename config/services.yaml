@@ -19,7 +19,7 @@ services:
     public: true
     arguments:
       $apiSecret: '%env(ALMEFY_SECRET)%'
-
+      $successRedirectUrl: '%env(LOGIN_REDIRECT_URL)%'
   Almefy\AuthenticationBundle\Controller\:
     resource: '../src/Controller'
     tags: ['controller.service_arguments']

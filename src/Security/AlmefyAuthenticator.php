@@ -41,7 +41,7 @@ class AlmefyAuthenticator extends AbstractAuthenticator
         private Client $client,
         private AlmefySessionManager $almefySessionManager,
         private string $apiSecret,
-        private string $successRedirectUrl = '/'
+        private ?string $successRedirectUrl = '/sessions'
     ) {
     }
 
@@ -107,7 +107,11 @@ class AlmefyAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($this->successRedirectUrl);
+        if ($this->successRedirectUrl) {
+            return new RedirectResponse($this->successRedirectUrl);
+        }
+
+        return null;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
