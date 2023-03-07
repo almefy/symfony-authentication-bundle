@@ -41,7 +41,7 @@ class AlmefyAuthenticator extends AbstractAuthenticator
         private Client $client,
         private AlmefySessionManager $almefySessionManager,
         private string $apiSecret,
-        private ?string $successRedirectUrl = '/sessions'
+        private ?string $successRedirectUrl = null
     ) {
     }
 
