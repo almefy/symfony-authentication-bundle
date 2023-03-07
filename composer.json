@@ -3,7 +3,7 @@
     "description": "Almefy Authentication Bundle helps to connect symfony applications with Almefy Authenticator support.",
     "type": "library",
     "require": {
-        "almefy/sdk": "^0.9.3",
+        "almefy/client": "^1.0",
         "symfony/security-bundle": "^6.2",
         "symfony/cache": "^6.2"
     },

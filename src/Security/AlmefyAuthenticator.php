@@ -68,8 +68,6 @@ class AlmefyAuthenticator extends AbstractAuthenticator
         return new Passport(
             new UserBadge($token->claims()->get('sub')),
             new CustomCredentials(function($credentials, UserInterface $user) use ($request) {
-                $user = AlmefyUserIdentity::fromIdentity($this->client->getIdentity($user->getUserIdentifier()));
-
                 $authenticateResult = $this->client->authenticate(new AuthenticationChallenge(
                     $credentials->claims()->get('jti'),
                     $credentials->claims()->get('sub'),
@@ -80,11 +78,15 @@ class AlmefyAuthenticator extends AbstractAuthenticator
                     throw new AccessDeniedHttpException(sprintf('Access denied for user: %s', $credentials->claims()->get('sub')));
                 }
 
+                $authenticateResult = $this->client->getResponse();
+
                 // Validate JWT
                 $now = new FrozenClock(new DateTimeImmutable());
                 $validator = new Validator();
 
                 try {
+                    $user = AlmefyUserIdentity::fromIdentity($this->client->getIdentity($user->getUserIdentifier()));
+
                     $validator->assert(
                         $credentials,
                         new IssuedBy($this->client->getApi()),
