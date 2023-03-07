@@ -78,8 +78,6 @@ class AlmefyAuthenticator extends AbstractAuthenticator
                     throw new AccessDeniedHttpException(sprintf('Access denied for user: %s', $credentials->claims()->get('sub')));
                 }
 
-                $authenticateResult = $this->client->getResponse();
-
                 // Validate JWT
                 $now = new FrozenClock(new DateTimeImmutable());
                 $validator = new Validator();
@@ -99,8 +97,8 @@ class AlmefyAuthenticator extends AbstractAuthenticator
                     throw new AuthenticationException($e->getMessage(),0, $e);
                 }
 
-                $request->getSession()->set('almefy_session_id', $authenticateResult['id'] ?? null);
-                $this->almefySessionManager->addSession(Session::fromArray($authenticateResult));
+                $request->getSession()->set('almefy_session_id', $authenticateResult?->getSession()?->getId());
+                $this->almefySessionManager->addSession($authenticateResult->getSession());
 
                 return true;
             }, $token)
