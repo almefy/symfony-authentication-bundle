@@ -14,6 +14,8 @@ services:
 
   Almefy\AuthenticationBundle\Security\AlmefyUserIdentityProvider:
     public: true
+  Almefy\AuthenticationBundle\Security\AuthenticationEntryPoint:
+    public: true
 
   Almefy\AuthenticationBundle\Security\AlmefyAuthenticator:
     public: true
