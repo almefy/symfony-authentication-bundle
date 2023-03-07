@@ -41,13 +41,14 @@ class AlmefyAuthenticator extends AbstractAuthenticator
         private Client $client,
         private AlmefySessionManager $almefySessionManager,
         private string $apiSecret,
-        private ?string $successRedirectUrl = null
+        private string $authenticateUrl,
+        private ?string $successRedirectUrl = null,
     ) {
     }
 
     public function supports(Request $request): ?bool
     {
-        return $request->headers->has('X-Almefy-Auth') && $request->getPathInfo() === '/almefy/authenticate';
+        return $request->headers->has('X-Almefy-Auth') && $request->getPathInfo() === $this->authenticateUrl;
     }
 
     public function authenticate(Request $request): Passport
